@@ -16,6 +16,7 @@
                         color="error" 
                         block
                         class="my-2"
+                        @click="google"
                     >
                         <v-icon left>
                              fab fa-google
@@ -56,12 +57,45 @@
 </template>
 
 <script>
+
+import { firebase, auth, db } from '../firebase'
+
 export default {
     data() {
         return {
             registro: false
         }
     },
+    methods:{
+        async google(){
+            console.log('google');
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().language = 'es';
+
+            try {
+                /* Ingreso Usuario */
+                const result = await firebase.auth().signInWithPopup(provider);
+                const user = result.user;
+                console.log(user)
+
+                /* Construir usuario */
+                const usuario = {
+                    nombre: user.displayName,
+                    email: user.email,
+                    uid: user.uid,
+                    foto: user.photoURL
+                }
+
+                /* Guardar en firebase */
+                await db.collection('usuarios').doc(usuario.uid).set(
+                    usuario
+                )
+                console.log('Usuario guardado en DB')
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
 
 }
 </script>

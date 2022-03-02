@@ -27,6 +27,7 @@
                         rounded 
                         color="info" 
                         block
+                        @click="facebook"
                     >
                         <v-icon left>
                              fab fa-facebook
@@ -67,9 +68,19 @@ export default {
         }
     },
     methods:{
-        async google(){
+        facebook(){
+            console.log('facebook');
+            const provider = new firebase.auth.FacebookAuthProvider();
+
+            this.ingresar(provider);
+        },
+        google(){
             console.log('google');
             const provider = new firebase.auth.GoogleAuthProvider();
+
+            this.ingresar(provider);
+        },
+        async ingresar(provider){
             firebase.auth().language = 'es';
 
             try {

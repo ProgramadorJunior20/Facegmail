@@ -1,25 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-toolbar-title class="headline text-uppercase">
-          <span>Vue</span>
-        </v-toolbar-title>
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-      >
-        <span class="mr-2">Cerrar sesión</span>
-        <v-icon class="fa-light">fa fas fa-address-book</v-icon>
-      </v-btn>
-    </v-app-bar>
-
+    <Navbar></Navbar>
     <v-main>
       <v-container>
         <router-view/>
@@ -29,12 +10,12 @@
 </template>
 
 <script>
-
+import Navbar from './components/Navbar.vue'
 export default {
+  components: {Navbar},
   name: 'App',
-
   data: () => ({
     //
-  }),
+  })
 };
 </script>

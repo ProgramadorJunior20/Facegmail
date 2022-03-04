@@ -58,7 +58,7 @@ export default {
       drawer: true,
       items: [
         { title: "Perfil", icon: "fas fa-address-card", to: {name: "Home"}},
-        { title: "Fotografias", icon: "fas fa-images", to: {name: "Ingreso"} },
+        { title: "Fotografias", icon: "fas fa-images", to: {name: "Home"} },
         { title: "Admin", icon: "fas fa-chalkboard-teacher", to: {name: "Admin"} },
       ],
     };
